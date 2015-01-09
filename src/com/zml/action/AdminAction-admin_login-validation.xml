@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC 
+"-//OpenSymphony Group//XWork Validator 1.0.2//EN" 
+"http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+    <field name="username">
+        <field-validator type="requiredstring" short-circuit="false">
+            <param name="trim">true</param>
+            <message>username shoudld not be blank!</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">6</param>
+            <param name="maxLength">8</param>
+            <message>username should be between ${minLength} and ${maxLength}</message>
+        </field-validator>
+    </field>
+   
+    <field name="password">
+        <field-validator type="requiredstring">
+            <message>password should not be balank!</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">6</param>
+            <param name="maxLength">8</param>
+            <message>password should be between ${minLength} and ${maxLength}</message>
+        </field-validator>
+    </field>
+</validators>
