@@ -9,7 +9,7 @@ public class TimeUtil {
 		Date datetime = new Date();
 	    Calendar calendar = new GregorianCalendar(); 
 	    calendar.setTime(datetime); 
-	    calendar.add(calendar.DATE, i % 3 + 1);//把日期往后增加一天.整数往后推,负数往前移动 
+	    calendar.add(calendar.DATE, i / 3 + 1);//把日期往后增加一天.整数往后推,负数往前移动 
 	    datetime=calendar.getTime();   //这个时间就是日期往后推一天的结果
 	    switch(i) {
 	    case 1:

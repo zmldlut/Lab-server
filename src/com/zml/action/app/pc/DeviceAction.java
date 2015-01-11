@@ -7,23 +7,22 @@ import java.util.Map;
 import com.opensymphony.xwork2.ActionSupport;
 import com.zml.dao.factory.DaoFactory;
 import com.zml.dao.proxy.DeviceDaoProxy;
-import com.zml.model.BaseModel;
-import com.zml.model.Datas;
+import com.zml.model.Data;
 import com.zml.model.app.pc.Device;
 import com.zml.util.C;
 
 public class DeviceAction extends ActionSupport {
 
     private static final long serialVersionUID = 5693143267639213362L;
-    private Datas returnMsg;                //使用json返回单个值 
+    private Data returnMsg;                //使用json返回单个值 
    
 	private String type;
     private int status;
     private int datetime;
-    public Datas getReturnMsg() {
+    public Data getReturnMsg() {
 		return returnMsg;
 	}
-	public void setReturnMsg(Datas returnMsg) {
+	public void setReturnMsg(Data returnMsg) {
 		this.returnMsg = returnMsg;
 	}
     public String getType() {
@@ -53,11 +52,10 @@ public class DeviceAction extends ActionSupport {
         }
     }
     
-    
     public String getDevices() {
-    	returnMsg = new Datas();
+    	returnMsg = new Data();
     	ArrayList<Device> devices = DeviceDao.getDevices(type, status, datetime);
-    	System.out.println("zml" + devices.size());
+//    	System.out.println("zml" + devices.size());
     	Map<String, ArrayList<Device>> result = new HashMap<String, ArrayList<Device>>();
     	result.put("Device.List", devices);
     	returnMsg.setCode(C.code.login);
@@ -65,26 +63,4 @@ public class DeviceAction extends ActionSupport {
     	returnMsg.setResult(result);
     	return SUCCESS;
     }
-    
-    /*返回UserInfo对象*/   
-//    public String login(){ 
-//    	returnMsg = new Data();
-//    	Student student = studentDao.checkUser(stdNum, password);
-//    	Map<String, Student> result = new HashMap<String, Student>();
-//    	result.put("Student", student);
-//    	returnMsg.setCode(C.code.login);
-//    	returnMsg.setMessage("SUCCESS");
-//    	returnMsg.setResult(result);
-//    	return SUCCESS; 
-//    }
-//    
-//    public String password() {
-//    	if(studentDao.updatePass(pass.getStdNum(), pass.getNewPass())) {
-//	    	returnMsg = new Data();
-//	    	returnMsg.setCode(C.code.password);
-//	    	returnMsg.setMessage("SUCCESS");
-//	    	returnMsg.setResult(null);
-//    	}
-//    	return SUCCESS; 
-//    }
 }

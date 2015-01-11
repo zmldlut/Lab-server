@@ -1,6 +1,7 @@
 package com.zml.model.app.pc;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.zml.model.BaseModel;
 
@@ -10,21 +11,21 @@ public class Order extends BaseModel implements Serializable{
 	private String id;
 	private String stdNum;
 	private String device_id;
-	private String order_time;
-	private String start_time;
-	private String end_time;
-	private String status;
-	public String getStdNum() {
-		return stdNum;
-	}
-	public void setStdNum(String stdNum) {
-		this.stdNum = stdNum;
-	}
+	private Date order_time;
+	private Date start_time;
+	private Date end_time;
+	private int status;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getStdNum() {
+		return stdNum;
+	}
+	public void setStdNum(String stdNum) {
+		this.stdNum = stdNum;
 	}
 	public String getDevice_id() {
 		return device_id;
@@ -32,28 +33,28 @@ public class Order extends BaseModel implements Serializable{
 	public void setDevice_id(String device_id) {
 		this.device_id = device_id;
 	}
-	public String getOrder_time() {
+	public Date getOrder_time() {
 		return order_time;
 	}
-	public void setOrder_time(String order_time) {
+	public void setOrder_time(Date order_time) {
 		this.order_time = order_time;
 	}
-	public String getStart_time() {
+	public Date getStart_time() {
 		return start_time;
 	}
-	public void setStart_time(String start_time) {
+	public void setStart_time(Date start_time) {
 		this.start_time = start_time;
 	}
-	public String getEnd_time() {
+	public Date getEnd_time() {
 		return end_time;
 	}
-	public void setEnd_time(String end_time) {
+	public void setEnd_time(Date end_time) {
 		this.end_time = end_time;
 	}
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 }

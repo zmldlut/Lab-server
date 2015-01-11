@@ -36,5 +36,19 @@
               	</param> 
           	</result>
         </action>
+        <action name="pc_app_order" class="com.zml.action.app.pc.OrderAction" method="doCreate">
+			<result type="json"> 
+              	<param name="root">
+                  returnMsg
+              	</param> 
+          	</result>
+        </action>
+        <action name="pc_app_order_list" class="com.zml.action.app.pc.OrderAction" method="getOrders">
+			<result type="json"> 
+              	<param name="root">
+                  returnMsg
+              	</param> 
+          	</result>
+        </action>
     </package>
 </struts>

@@ -21,9 +21,11 @@ public class OrderDaoProxy extends BaseDaoProxy implements OrderDao{
     }
 
 	@Override
-	public boolean doCreate(Order obj) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean doCreate(Order order) {
+		boolean result = false;
+		result = ((OrderDaoImpl) dao).doCreate(order);
+		connPool.returnConnection(this.conn);
+		return result;
 	}
 
 	@Override

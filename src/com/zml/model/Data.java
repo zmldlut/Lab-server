@@ -5,7 +5,7 @@ import java.util.Map;
 public class Data {
 	private int code;
     private String message;
-    private Map<String, ? extends BaseModel> result;
+    private Map<String, ?> result;
 	public int getCode() {
 		return code;
 	}
@@ -18,10 +18,10 @@ public class Data {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public Map<String, ? extends BaseModel> getResult() {
+	public Map<String, ?> getResult() {
 		return result;
 	}
-	public void setResult(Map<String, ? extends BaseModel> result) {
+	public void setResult(Map<String, ?> result) {
 		this.result = result;
 	}
 }

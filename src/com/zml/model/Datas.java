@@ -24,7 +24,7 @@ public class Datas {
 	public Map<String, ArrayList<Device>> getResult() {
 		return result;
 	}
-	public void setResult(Map<String, ArrayList<Device>> result) {
-		this.result = result;
+	public void setResult(Map<String, ArrayList<Device>> result2) {
+		this.result = result2;
 	}
 }
