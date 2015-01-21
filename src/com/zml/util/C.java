@@ -34,10 +34,8 @@ public class C {
 	
 	//ÃüÁî
 	public static final class cmd {
-		public static final int open_door 			= 1000;
-		public static final int open_curtain		= 1001;
-		public static final int close_curtain		= 1002;
-		public static final int open_lamp			= 1003;
-		public static final int close_lamp			= 1004;
+		public static final int open_door 			= 1003;
+		public static final int open_curtain		= 1005;
+		public static final int open_lamp			= 1006;
 	}
 }

@@ -72,22 +72,22 @@ ServletResponseAware, SessionAware {
     }
 
     //正常登陆
-    public String login() {
-        System.out.println("userCookie:" + userCookie);
-        Admin user = admin.checkUser(username, password);
-        if(user != null) {
-            System.out.println("isRemember:" + userCookie);
-            if (userCookie) {
-                Cookie cookie = CookieUtils.addCookie(user);
-                response.addCookie(cookie);// 添加cookie到response中
-            }
-            session.put(USER_SESSION, user);
-            return "success";
-        } else {
-            this.addActionError("该用户名不存在！");
-            return "failure";
-        }
-    }
+//    public String login() {
+//        System.out.println("userCookie:" + userCookie);
+//        Admin user = admin.checkUser(username, password);
+//        if(user != null) {
+//            System.out.println("isRemember:" + userCookie);
+//            if (userCookie) {
+//                Cookie cookie = CookieUtils.addCookie(user);
+//                response.addCookie(cookie);// 添加cookie到response中
+//            }
+//            session.put(USER_SESSION, user);
+//            return "success";
+//        } else {
+//            this.addActionError("该用户名不存在！");
+//            return "failure";
+//        }
+//    }
 //    public void getAllVenuesRestInfo(){
 //        try {
 //            //System.out.println(sport_id);

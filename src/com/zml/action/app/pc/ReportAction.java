@@ -4,7 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.zml.dao.factory.DaoFactory;
 import com.zml.dao.proxy.ReportDaoProxy;
 import com.zml.model.Data;
-import com.zml.model.app.pc.Report;
+import com.zml.model.Report;
 import com.zml.util.C;
 
 public class ReportAction extends ActionSupport {

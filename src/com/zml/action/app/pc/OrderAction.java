@@ -9,13 +9,10 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.zml.dao.DeviceDao;
 import com.zml.dao.factory.DaoFactory;
 import com.zml.dao.proxy.OrderDaoProxy;
 import com.zml.model.Data;
-import com.zml.model.Datas;
-import com.zml.model.app.pc.Device;
-import com.zml.model.app.pc.Order;
+import com.zml.model.Order;
 import com.zml.util.C;
 
 public class OrderAction extends ActionSupport {

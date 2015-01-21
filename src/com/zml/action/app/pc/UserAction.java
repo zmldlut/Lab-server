@@ -64,13 +64,15 @@ public class UserAction extends ActionSupport {
     /*·µ»ØUserInfo¶ÔÏó*/   
     public String login(){ 
     	returnMsg = new Data();
+    	System.out.println("login"+"  stdNum:"+stdNum+"      password:"+password);
     	Student student = studentDao.checkUser(stdNum, password);
+    	System.out.println("checkUser" + student.getPassword());
     	Map<String, Student> result = new HashMap<String, Student>();
     	result.put("Student", student);
     	returnMsg.setCode(C.code.login);
     	returnMsg.setMessage("SUCCESS");
     	returnMsg.setResult(result);
-    	return SUCCESS; 
+    	return SUCCESS;
     }
     
     public String password() {

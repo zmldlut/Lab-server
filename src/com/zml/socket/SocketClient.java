@@ -13,7 +13,7 @@ import com.zml.packet.BaseDataPacket;
 import com.zml.packet.CmdPacket;
 import com.zml.util.C;
 
-public class SocketClient {
+public class SocketClient{
 
 	private final int MAX_TIMEOUT = 3000;//ms
 	private final int SYN = 1000;
@@ -22,9 +22,16 @@ public class SocketClient {
 	private BufferedReader in_buff;
 	private OutputStream out_buff;
 	
-	public SocketClient() {
+	private int cmdType;
+	private int id;
+	private int cmd;
+	
+	public SocketClient(int cmdType, int id, int cmd) {
+		this.cmdType = cmdType;
+		this.id = id;
+		this.cmd = cmd;
 		try {
-			socket = new Socket("127.0.0.1", 3333);
+			socket = new Socket("192.168.9.7", 3333);
 			socket.setSoTimeout(MAX_TIMEOUT);
 			in_buff = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
 			out_buff = socket.getOutputStream();
@@ -33,7 +40,6 @@ public class SocketClient {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	private void sendPacket(OutputStream out_buff, BaseDataPacket packet) {
@@ -46,9 +52,7 @@ public class SocketClient {
 		}
 	}
 	
-	private
-	void send(int cmdType, int id) {
-		int cmd = 1;
+	private void send(int cmdType, int id, int cmd) {
 		switch (cmdType) {
 		case C.cmd.open_door:
 			BaseDataPacket openDoorCmd = new CmdPacket(SYN, id, C.packet.DOOROPENPACKETTYPE, cmd);
@@ -58,29 +62,22 @@ public class SocketClient {
 			BaseDataPacket openCurtainCmd = new CmdPacket(SYN, id, C.packet.CURTIONPACKETTYPE, cmd);
 			sendPacket(out_buff, openCurtainCmd);
 			break;
-		case C.cmd.close_curtain:
-			BaseDataPacket closeCurtainCmd = new CmdPacket(SYN, id, C.packet.CURTIONPACKETTYPE, cmd);
-			sendPacket(out_buff, closeCurtainCmd);
-			break;
 		case C.cmd.open_lamp:
 			BaseDataPacket openLampCmd = new CmdPacket(SYN, id, C.packet.LAMPPACKETTYPE, cmd);
 			sendPacket(out_buff, openLampCmd);
-			break;
-		case C.cmd.close_lamp:
-			BaseDataPacket closeLampCmd = new CmdPacket(SYN, id, C.packet.LAMPPACKETTYPE, cmd);
-			sendPacket(out_buff, closeLampCmd);
 			break;
 		default:
 			break;
 		}
 	}
 	
-	public boolean runSocket(int cmdType, int id) {
+	public boolean runSocket() {
 		boolean acceptMessage=true;
+		boolean result = false;
 		String msg=null;//保存接收到的数据信息
 		JSONObject json =null;
 		int ack = 0;//数据类型
-		send(cmdType, id);
+		send(cmdType, id, cmd);
 		while(acceptMessage) {
 			try {
 				System.out.println("socket正在读取数据。。。。。。");
@@ -93,9 +90,10 @@ public class SocketClient {
 				json =  JSONObject.fromObject(msg);
 				ack = json.getInt("ack");
 				if (ack == 1) {
-					return true;
+					result = true;
+					acceptMessage = false;
 				} else {
-					return false;
+					acceptMessage =  false;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -113,6 +111,6 @@ public class SocketClient {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return result;
 	}
 }

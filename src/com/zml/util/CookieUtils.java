@@ -37,12 +37,12 @@ public class CookieUtils {
                         String[] split = value.split(",");
                         String username = split[0];
                         String password = split[1];
-                        Admin admin = adminDAO.checkUser(username, password);
-                        if (admin != null) {
-                            HttpSession session = request.getSession();
-                            session.setAttribute(AdminAction.USER_SESSION, admin);// 添加用户到session中
-                            return true;
-                        }
+//                        Admin admin = adminDAO.checkUser(username, password);
+//                        if (admin != null) {
+//                            HttpSession session = request.getSession();
+//                            session.setAttribute(AdminAction.USER_SESSION, admin);// 添加用户到session中
+//                            return true;
+//                        }
                     }
                 }
             }

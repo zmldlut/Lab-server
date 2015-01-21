@@ -1,7 +1,7 @@
 package com.zml.packet;
 
 public class CmdPacket extends BaseDataPacket {
-	private int Cmd;
+	private int Cmd = 1;
 
 	public int getCmd() {
 		return Cmd;

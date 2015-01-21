@@ -1,9 +1,11 @@
 package com.zml.packet;
 
 public class BaseDataPacket {
-	protected long Syn;
-	protected int Id;
-	protected int PacketType;
+	protected long Syn = 1000;
+	protected int Id = -1;
+	protected int PacketType = -1;
+	protected int cmdType = 1;  //1代表是远程控制命令
+	
 	public long getSyn() {
 		return Syn;
 	}
@@ -21,5 +23,11 @@ public class BaseDataPacket {
 	}
 	public void setPacketType(int packetType) {
 		PacketType = packetType;
+	}
+	public int getCmdType() {
+		return cmdType;
+	}
+	public void setCmdType(int cmdType) {
+		this.cmdType = cmdType;
 	}
 }

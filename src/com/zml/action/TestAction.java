@@ -1,60 +1,53 @@
 package com.zml.action;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.zml.model.Student;
+import com.zml.model.Data;
+import com.zml.socket.SocketClient;
+import com.zml.util.C;
 
-public class TestAction extends ActionSupport {
+public class TestAction extends BaseAction {
     private static final long serialVersionUID = 5486252238619700386L;
-    private String message;                //使用json返回单个值 
-    private Student student;
-    private List userInfosList;     //使用josn返回List对象 
-    public String getMessage() {
-        return message;
-    }
-    public void setMessage(String message) {
-        this.message = message;
-    }
-    public Student getStudent() {
-        return student;
-    }
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-    public List getUserInfosList() {
-        return userInfosList;
-    }
-    public void setUserInfosList(List userInfosList) {
-        this.userInfosList = userInfosList;
-    }
     
-    public String returnMsg(){   
-        this.message = "成功返回单个值";  
-        return SUCCESS; 
-   }  
-   /*返回UserInfo对象*/   
-   public String returnUser(){ 
-       student = new Student(); 
-       student.setStdNum("100"); 
-       student.setName("刘栋"); 
-       student.setCardID("123456"); 
-       return SUCCESS; 
-   } 
-   /*返回List对象*/   
-   public String returnList(){   
-       userInfosList = new ArrayList<Student>(); 
-       Student u1 = new Student(); 
-       u1.setStdNum("1010"); 
-       u1.setName("刘栋"); 
-       u1.setCardID("123456"); 
-       Student u2 = new Student(); 
-       u2.setStdNum("1020"); 
-       u2.setName("刘栋"); 
-       u2.setCardID("123456"); 
-       userInfosList.add(u1);  
-       userInfosList.add(u2);  
-       return SUCCESS;   
-   }
+    private int packetType = 1003;
+    private int node_id = 4;
+    private int cmd = 1;
+    private Data returnMsg;                //使用json返回单个值 
+
+	public Data getReturnMsg() {
+		return returnMsg;
+	}
+	public void setReturnMsg(Data returnMsg) {
+		this.returnMsg = returnMsg;
+	}
+	public int getPacketType() {
+		return packetType;
+	}
+	public void setPacketType(int packetType) {
+		this.packetType = packetType;
+	}
+	public int getNode_id() {
+		return node_id;
+	}
+	public void setNode_id(int node_id) {
+		this.node_id = node_id;
+	}
+	public int getCmd() {
+		return cmd;
+	}
+	public void setCmd(int cmd) {
+		this.cmd = cmd;
+	}
+
+	public String openDoor() {
+		returnMsg = new Data();
+		resultMsg = new HashMap<String, Object>();
+    	SocketClient client = new SocketClient(packetType, node_id, cmd);
+    	boolean result = client.runSocket();
+    	resultMsg.put("result", result);
+    	returnMsg.setCode(C.code.login);
+    	returnMsg.setMessage("SUCCESS");
+    	returnMsg.setResult(resultMsg);
+    	return SUCCESS;
+    }
 }

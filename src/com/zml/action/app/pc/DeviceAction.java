@@ -8,7 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.zml.dao.factory.DaoFactory;
 import com.zml.dao.proxy.DeviceDaoProxy;
 import com.zml.model.Data;
-import com.zml.model.app.pc.Device;
+import com.zml.model.Device;
 import com.zml.util.C;
 
 public class DeviceAction extends ActionSupport {
