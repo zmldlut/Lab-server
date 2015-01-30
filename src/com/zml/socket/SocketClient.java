@@ -16,7 +16,7 @@ import com.zml.util.C;
 public class SocketClient{
 
 	private final int MAX_TIMEOUT = 3000;//ms
-	private final int SYN = 1000;
+	private final int SYN = 1001;
 	
 	private Socket socket;
 	private BufferedReader in_buff;
@@ -31,7 +31,7 @@ public class SocketClient{
 		this.id = id;
 		this.cmd = cmd;
 		try {
-			socket = new Socket("192.168.9.7", 3333);
+			socket = new Socket("192.168.9.123", 3334);
 			socket.setSoTimeout(MAX_TIMEOUT);
 			in_buff = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
 			out_buff = socket.getOutputStream();
